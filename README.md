@@ -80,3 +80,28 @@ Criaremos um **Nat Gateway** e atrelaremos as nossas subnets públicas.
 
 <img width="1649" height="749" alt="image" src="https://github.com/user-attachments/assets/5404ceb6-711a-4f0c-b6ea-5d8badd50306" />
 
+## Route Table
+
+Criaremos as **Routers Tables** públicas e privadas paras os serviços.
+
+<img width="1655" height="554" alt="image" src="https://github.com/user-attachments/assets/4c3c7d2d-1bbe-4e99-b5f1-885fa3512ed2" />
+
+<img width="1664" height="559" alt="image" src="https://github.com/user-attachments/assets/6117df50-7f8f-4b58-86ba-4b50786ac601" />
+
+<img width="1668" height="278" alt="image" src="https://github.com/user-attachments/assets/2f11cee4-4d63-4498-ac60-bb9c766f0d36" />
+
+### Associar Routers Tables em Subnets
+
+Para associar, faça:
+
+<img width="1675" height="415" alt="image" src="https://github.com/user-attachments/assets/fef20d77-f5e4-42d2-b1d7-0bdee42c41a5" />
+
+<img width="1691" height="613" alt="image" src="https://github.com/user-attachments/assets/d45079b2-eec7-4943-bf35-660ca703d9a7" />
+
+<img width="1672" height="425" alt="image" src="https://github.com/user-attachments/assets/8e0915e1-1b25-48e4-8b75-b4e8f425749e" />
+
+<img width="1711" height="591" alt="image" src="https://github.com/user-attachments/assets/870f97a1-c8a6-4a57-ae15-6b94c4ac5df6" />
+
+
+
+
