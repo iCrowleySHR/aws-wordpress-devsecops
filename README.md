@@ -104,6 +104,49 @@ Para associar, faça:
 
 ## Security Groups
 
-Criaremos todos os secur
+Criaremos todos os Grupos de segurança
+
+`VPC -> Grupos de segurança -> Criar grupo de segurança`
+
+<img width="1914" height="844" alt="image" src="https://github.com/user-attachments/assets/c2421332-95e7-4c00-be84-9b1ff999c45e" />
+
+> Criaremos primeiros sem regras de entrada e saída, configuraremos depois da criação de todos os SG.
+
+## Regras
+
+### EC2
+
+<img width="1920" height="631" alt="image" src="https://github.com/user-attachments/assets/74ee8810-7c83-4031-a748-e489b52dfffe" />
+
+<img width="1911" height="609" alt="image" src="https://github.com/user-attachments/assets/1a16d044-9869-4d35-af7f-63aea393795a" />
+
+### Application Load Balancer
+
+<img width="1920" height="555" alt="image" src="https://github.com/user-attachments/assets/f15f973e-2735-445a-9b2f-3ecf750a4442" />
+
+<img width="1920" height="489" alt="image" src="https://github.com/user-attachments/assets/3dc69e3c-db41-4d42-883b-7f80ddfd3565" />
+
+### RDS 
+
+<img width="1920" height="492" alt="image" src="https://github.com/user-attachments/assets/5b9e702f-802d-4043-acdf-19d3ae265c60" />
+
+<img width="1920" height="516" alt="image" src="https://github.com/user-attachments/assets/f5754ea5-c43d-4ac7-878b-357c2caeb7b1" />
+
+### EFS
+
+<img width="1920" height="535" alt="image" src="https://github.com/user-attachments/assets/6de68e17-4760-48da-adc9-395212ab5647" />
+
+<img width="1920" height="494" alt="image" src="https://github.com/user-attachments/assets/1d88a100-5713-4d1d-858c-cf7c3316c728" />
+
+### Bastion
+
+<img width="1920" height="600" alt="image" src="https://github.com/user-attachments/assets/d8a81cf1-58f8-4c09-9105-5f4493374be5" />
+
+<img width="1920" height="551" alt="image" src="https://github.com/user-attachments/assets/d90a599a-0986-4394-9cdc-2cd33212d70a" />
+
+
+
+
+
 
 
