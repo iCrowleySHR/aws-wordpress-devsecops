@@ -94,6 +94,82 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/3a88152d-0d2a-444b-8bfa-5ab2cfe57a98" />
 
+<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/145fdeff-7e8e-43f3-be30-c9a954bb6962" />
+
+<img width="1917" height="466" alt="image" src="https://github.com/user-attachments/assets/09764daa-e41f-4a84-a6e2-78a1c87e3d77" />
+
+<img width="1077" height="558" alt="image" src="https://github.com/user-attachments/assets/6bac01a2-332d-455c-ad7c-a915335dc2da" />
+
+<img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/2336de80-2c3b-41c2-be89-bb2255aef243" />
+
+<img width="1917" height="974" alt="image" src="https://github.com/user-attachments/assets/858168b4-31ad-4574-b13d-76acd2b55ff4" />
+
+<img width="1920" height="938" alt="image" src="https://github.com/user-attachments/assets/14435b26-7b3c-4878-98c5-0ada274f0e74" />
+
+<img width="1913" height="635" alt="image" src="https://github.com/user-attachments/assets/91b14fde-714d-4130-99ca-4c525aca590c" />
+
+<img width="1920" height="533" alt="image" src="https://github.com/user-attachments/assets/9cab8720-464e-439f-bcf3-1621859f46a7" />
+
+<img width="1920" height="207" alt="image" src="https://github.com/user-attachments/assets/d2207dfd-7bf9-4515-9c7f-e6d28e08dc57" />
+
+<img width="1920" height="776" alt="image" src="https://github.com/user-attachments/assets/792cc159-9650-4c13-a75f-cfc0161d343d" />
+
+>  Vá em criar grupo de destino
+
+<img width="1919" height="696" alt="image" src="https://github.com/user-attachments/assets/18a0fb79-2a93-418e-8337-42caca2c664a" />
+
+<img width="1920" height="526" alt="image" src="https://github.com/user-attachments/assets/0c3f5382-d44c-4188-955e-fb591636aef2" />
+
+<img width="1920" height="927" alt="image" src="https://github.com/user-attachments/assets/8965810d-cfa4-4cc8-8ed4-1b4f26af3fcf" />
+
+<img width="1920" height="862" alt="image" src="https://github.com/user-attachments/assets/71f88d0f-7f82-4998-81e0-017215ed4d3f" />
+
+<img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/e76e6175-db74-40c6-b44d-3a052f987417" />
+
+<img width="1920" height="689" alt="image" src="https://github.com/user-attachments/assets/d129c85b-d9a3-41ba-859f-aa1f5b273bab" />
+
+<img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/a2da9cce-2faf-4c01-b6f5-d23b2c190d2b" />
+
+<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/cda016c0-47c9-4a0b-bd99-41b36d5b5d49" />
+
+<img width="1920" height="921" alt="image" src="https://github.com/user-attachments/assets/6441e22c-30a2-4369-a86e-f3b8ed5e4346" />
+
+<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/85d5cb9f-000b-45e7-bb00-d8bb2f64704c" />
+
+<img width="1917" height="785" alt="image" src="https://github.com/user-attachments/assets/5ef45330-b5d6-4134-aa48-d7cf1b479887" />
+
+<img width="1915" height="709" alt="image" src="https://github.com/user-attachments/assets/0c0a6950-f96d-424d-b816-6a701efea4dc" />
+
+<img width="1919" height="694" alt="image" src="https://github.com/user-attachments/assets/beeee04f-4a35-4525-a111-283d9f1301ac" />
+
+<img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
