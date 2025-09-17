@@ -14,135 +14,80 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1219" height="550" alt="image" src="https://github.com/user-attachments/assets/825ec8af-1eb9-4bbd-b727-693494b9da12" />
 
-
-## VPC
-Entraremos no serviço **VPC** e criaremos uma Virtual Private Cloud.
-
-`VPC -> Suas VPCs -> Criar VPC`
-
-<img width="1397" height="684" alt="image" src="https://github.com/user-attachments/assets/15157df7-baaf-4ae1-b29c-830b206096d4" />
-
-
-## Subnets
-Agora entraremos e configuraremos as 6 **Subnets** conforme o diagrama.
-
-`VPC -> Sub-redes -> Criar sub-redes`
-
-<img width="1674" height="308" alt="image" src="https://github.com/user-attachments/assets/44110044-74c1-4a9c-bd07-995951c909df" />
-
-> Em todas as subnets você vai selecionar a VPC que criamos anteriormente!
-
-### Públicas
-<img width="1642" height="755" alt="image" src="https://github.com/user-attachments/assets/8a72ccd9-bcd9-4b22-80d4-0ea36ce5d529" />
-
-<img width="1650" height="776" alt="image" src="https://github.com/user-attachments/assets/92ef52d7-9c59-4482-8d5b-46a9c5f14b49" />
-
-### Privadas
-
-#### Data
-<img width="1659" height="795" alt="image" src="https://github.com/user-attachments/assets/f1e864b8-3660-4a8e-993e-01df74d262f9" />
-
-<img width="1655" height="793" alt="image" src="https://github.com/user-attachments/assets/9e7b0923-76dd-4fbd-85e5-155586443ee3" />
-
-#### App
-
-<img width="1658" height="798" alt="image" src="https://github.com/user-attachments/assets/e1088424-9396-4594-9aad-8294aca60bab" />
-
-<img width="1643" height="796" alt="image" src="https://github.com/user-attachments/assets/1ff7596d-574d-4c03-b5cc-982f722df78c" />
-
 ---
 
-No final você vai encontrar esse resultado na sua lista de **Subnets**
+<img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/127989ee-f70a-43c3-8de8-e4cdc0e15331" />
 
-<img width="1656" height="349" alt="image" src="https://github.com/user-attachments/assets/e0bf5cf8-3f67-49e9-992e-82bb14e1bf2a" />
+<img width="1891" height="637" alt="image" src="https://github.com/user-attachments/assets/533ad3e2-ae7f-4c1e-8ad8-d3b1f6c21c0d" />
 
-## Gateway da Internet
+<img width="411" height="750" alt="image" src="https://github.com/user-attachments/assets/ec8c184b-4db3-4ce5-907b-d3d2c5e7be00" />
 
-Criaremos um **Gateway da Internet** e atrelaremos a nossa VPC.
+<img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
-`VPC -> Gateways da Internet -> Criar gateway da Internet`
+<img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
-<img width="1462" height="473" alt="image" src="https://github.com/user-attachments/assets/9b60ec61-34a5-49e2-8647-e2f9dc360b8d" />
+<img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/dc61311f-c234-4e26-918e-86a9cde1132a" />
 
-Depois de criar, devemos associar a nossa VPC
+<img width="1920" height="897" alt="image" src="https://github.com/user-attachments/assets/71025b7f-2828-4ece-a3a4-58891fd919d5" />
 
-<img width="1665" height="408" alt="image" src="https://github.com/user-attachments/assets/afe7cc59-1955-4e12-8abc-b9ad44dc900f" />
+<img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/c4bf3590-9c24-4836-80b0-297df1260eaa" />
 
-<img width="1473" height="318" alt="image" src="https://github.com/user-attachments/assets/e062110b-f0a2-44ca-9b9e-5e44aacccac2" />
+<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
-## Nat Gateway
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/5541e9e5-5e51-4575-bd4e-01ae040f159a" />
 
-Criaremos um **Nat Gateway** e atrelaremos as nossas subnets públicas.
+<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/c3f25010-35ce-4ede-a254-8b9703f9989e" />
 
-`VPC -> Gateways NAT -> Criar gateway NAT`
+<img width="1920" height="938" alt="image" src="https://github.com/user-attachments/assets/27064aed-1b8d-4ded-a5c5-3541346773ca" />
 
-<img width="1646" height="751" alt="image" src="https://github.com/user-attachments/assets/4a96608f-1d6f-4010-8c84-b1e9a8310381" />
+<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/08f2dca8-770e-4ddd-9b29-078e4ad43cd7" />
 
-<img width="1649" height="749" alt="image" src="https://github.com/user-attachments/assets/5404ceb6-711a-4f0c-b6ea-5d8badd50306" />
+<img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/0d3d8daf-8009-47a9-89f2-78c77e2a2bb3" />
 
-## Route Table
+<img width="1890" height="928" alt="image" src="https://github.com/user-attachments/assets/948ac489-babb-494e-8a9e-d3083647633e" />
 
-Criaremos as **Routers Tables** públicas e privadas paras os serviços.
+<img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/da2b81df-67c0-4296-aeb5-38e8a6ced4f2" />
 
-<img width="1655" height="554" alt="image" src="https://github.com/user-attachments/assets/4c3c7d2d-1bbe-4e99-b5f1-885fa3512ed2" />
+<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/1375278c-358c-4cbc-bbae-f37c2e04bc8e" />
 
-<img width="1664" height="559" alt="image" src="https://github.com/user-attachments/assets/6117df50-7f8f-4b58-86ba-4b50786ac601" />
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/27480330-db56-4d22-8a39-2ead1dd41458" />
 
-<img width="1668" height="278" alt="image" src="https://github.com/user-attachments/assets/2f11cee4-4d63-4498-ac60-bb9c766f0d36" />
+<img width="1674" height="407" alt="image" src="https://github.com/user-attachments/assets/1d43e7d8-cf39-4b34-b571-867c95fb4148" />
 
-### Associar Routers Tables em Subnets
+<img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/b2cd5d71-e013-4d08-9086-c6e730feb9e2" />
 
-Para associar, faça:
+<img width="1920" height="803" alt="image" src="https://github.com/user-attachments/assets/6c6d5014-9409-4c6a-8024-a90d6441f41c" />
 
-<img width="1675" height="415" alt="image" src="https://github.com/user-attachments/assets/fef20d77-f5e4-42d2-b1d7-0bdee42c41a5" />
+<img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/07ef4061-ae61-477d-8bcc-9eb78be546cf" />
 
-<img width="1691" height="613" alt="image" src="https://github.com/user-attachments/assets/d45079b2-eec7-4943-bf35-660ca703d9a7" />
+<img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/cace3395-b71d-4156-95dd-400fbec66316" />
 
-<img width="1672" height="425" alt="image" src="https://github.com/user-attachments/assets/8e0915e1-1b25-48e4-8b75-b4e8f425749e" />
+> Load balancer, bastion e proprio ip na porta 8080 para o phpmyadmin ;)
 
-<img width="1711" height="591" alt="image" src="https://github.com/user-attachments/assets/870f97a1-c8a6-4a57-ae15-6b94c4ac5df6" />
+<img width="1915" height="927" alt="image" src="https://github.com/user-attachments/assets/25db4ce8-3cc6-4b8b-92cb-e69d4a400bb3" />
 
-## Security Groups
+<img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/19c5dbe8-65c9-4e84-ae86-9bc5dab2f287" />
 
-Criaremos todos os Grupos de segurança
 
-`VPC -> Grupos de segurança -> Criar grupo de segurança`
 
-<img width="1914" height="844" alt="image" src="https://github.com/user-attachments/assets/c2421332-95e7-4c00-be84-9b1ff999c45e" />
 
-> Criaremos primeiros sem regras de entrada e saída, configuraremos depois da criação de todos os SG.
 
-## Regras
 
-### EC2
 
-<img width="1920" height="631" alt="image" src="https://github.com/user-attachments/assets/74ee8810-7c83-4031-a748-e489b52dfffe" />
 
-<img width="1911" height="609" alt="image" src="https://github.com/user-attachments/assets/1a16d044-9869-4d35-af7f-63aea393795a" />
 
-### Application Load Balancer
 
-<img width="1920" height="555" alt="image" src="https://github.com/user-attachments/assets/f15f973e-2735-445a-9b2f-3ecf750a4442" />
 
-<img width="1920" height="489" alt="image" src="https://github.com/user-attachments/assets/3dc69e3c-db41-4d42-883b-7f80ddfd3565" />
 
-### RDS 
 
-<img width="1920" height="492" alt="image" src="https://github.com/user-attachments/assets/5b9e702f-802d-4043-acdf-19d3ae265c60" />
 
-<img width="1920" height="516" alt="image" src="https://github.com/user-attachments/assets/f5754ea5-c43d-4ac7-878b-357c2caeb7b1" />
 
-### EFS
 
-<img width="1920" height="535" alt="image" src="https://github.com/user-attachments/assets/6de68e17-4760-48da-adc9-395212ab5647" />
 
-<img width="1920" height="494" alt="image" src="https://github.com/user-attachments/assets/1d88a100-5713-4d1d-858c-cf7c3316c728" />
 
-### Bastion
 
-<img width="1920" height="600" alt="image" src="https://github.com/user-attachments/assets/d8a81cf1-58f8-4c09-9105-5f4493374be5" />
 
-<img width="1920" height="551" alt="image" src="https://github.com/user-attachments/assets/d90a599a-0986-4394-9cdc-2cd33212d70a" />
+
 
 
 
