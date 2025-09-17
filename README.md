@@ -1,4 +1,4 @@
-# Wordpress em alta-disponibilidade na AWS
+<img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/98197a34-5e3d-4710-9d49-e1518d629f52" /># Wordpress em alta-disponibilidade na AWS
 
 Essa arquitetura simula um ambiente de produção real, no qual interrupções não podem 
 causar indisponibilidade da aplicação. Além disso, o uso de serviços gerenciados permite 
@@ -67,6 +67,39 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 <img width="1915" height="927" alt="image" src="https://github.com/user-attachments/assets/25db4ce8-3cc6-4b8b-92cb-e69d4a400bb3" />
 
 <img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/19c5dbe8-65c9-4e84-ae86-9bc5dab2f287" />
+
+<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/2064ad1f-f4a8-41b6-9ba3-e62b2b94f009" />
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/2edc3ba0-ab2d-47ec-9be1-bd2a8565cd7b" />
+
+<img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/274d3fb5-8a75-4357-a1ae-032914226cab" />
+
+<img width="1920" height="717" alt="image" src="https://github.com/user-attachments/assets/fa5ff95b-7c05-48d4-8001-5b5c602d9ce8" />
+
+<img width="1920" height="506" alt="image" src="https://github.com/user-attachments/assets/52ae8612-c03d-4996-8054-a80ee74574f5" />
+
+<img width="1920" height="579" alt="image" src="https://github.com/user-attachments/assets/45b77769-844d-4b4f-9e10-37ab523cd6ee" />
+
+<img width="1920" height="707" alt="image" src="https://github.com/user-attachments/assets/73e35d01-0386-46bd-af69-68f833eb75b9" />
+
+<img width="1920" height="504" alt="image" src="https://github.com/user-attachments/assets/2915d236-90dd-4594-a668-738d8dcae120" />
+
+<img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/5c95e978-4e2a-4686-a202-75123f551585" />
+
+<img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/e99a8f6d-66c1-4a1b-b213-7939235e08d7" />
+
+> Clica em personalizar
+> 
+<img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/da8219ca-6b65-4773-9158-78615f48fafa" />
+
+<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/3a88152d-0d2a-444b-8bfa-5ab2cfe57a98" />
+
+
+
+
+
+
+
 
 
 
