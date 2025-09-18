@@ -84,6 +84,8 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="504" alt="image" src="https://github.com/user-attachments/assets/2915d236-90dd-4594-a668-738d8dcae120" />
 
+> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instancia!
+
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/5c95e978-4e2a-4686-a202-75123f551585" />
 
 <img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/e99a8f6d-66c1-4a1b-b213-7939235e08d7" />
@@ -145,6 +147,16 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 <img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
+
+<img width="1920" height="908" alt="image" src="https://github.com/user-attachments/assets/72ffb6bc-8d22-4a97-8de0-5759ccace28d" />
+
+<img width="1641" height="827" alt="image" src="https://github.com/user-attachments/assets/887c20df-9d37-4abd-915e-c2c05f9f22cc" />
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/18c9922a-7dcf-452e-8b4b-15e46a0f31de" />
+
+<img width="1498" height="612" alt="image" src="https://github.com/user-attachments/assets/c93c8e84-19a7-4b08-830a-63cebcc8e8ca" />
+
+<img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/755ed431-8f10-4a22-a2da-7179c86b9693" />
 
 
 
