@@ -28,7 +28,7 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
-Após a criação, entre nas suas sub-redes para conferir
+## Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS.
 
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
@@ -44,7 +44,7 @@ Após a criação, entre nas suas sub-redes para conferir
 
 ---
 
-### Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado, 
+### Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado nas duas regiões
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
@@ -66,25 +66,51 @@ Após a criação, entre nas suas sub-redes para conferir
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/27480330-db56-4d22-8a39-2ead1dd41458" />
 
+---
+
+### Com isso, no mapa de recursos da sua VPC, deve ser esse o resultado que você vai encontrar, caso esteja diferente, pode ter ocorrido algum má configuração da aplicação
+
 <img width="1674" height="407" alt="image" src="https://github.com/user-attachments/assets/1d43e7d8-cf39-4b34-b571-867c95fb4148" />
+
+--- 
+
+### Agora iremos configurar os grupos de segurança da nossa aplicação, veja as configurações conforme o diagrama
 
 <img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/b2cd5d71-e013-4d08-9086-c6e730feb9e2" />
 
+### Load Balancer
+
 <img width="1920" height="803" alt="image" src="https://github.com/user-attachments/assets/6c6d5014-9409-4c6a-8024-a90d6441f41c" />
 
+### Bastion
+
 <img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/07ef4061-ae61-477d-8bcc-9eb78be546cf" />
+
+### EC2
 
 <img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/cace3395-b71d-4156-95dd-400fbec66316" />
 
 > Load balancer, bastion e proprio ip na porta 8080 para o phpmyadmin ;)
 
+### RDS (RELATION DATABASE)
+
 <img width="1915" height="927" alt="image" src="https://github.com/user-attachments/assets/25db4ce8-3cc6-4b8b-92cb-e69d4a400bb3" />
+
+### EFS
 
 <img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/19c5dbe8-65c9-4e84-ae86-9bc5dab2f287" />
 
+---
+
+### Agora iremos no serviço Aurora and RDS, nela iremos na configuração `Grupos de sub-redes`
+
 <img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/2064ad1f-f4a8-41b6-9ba3-e62b2b94f009" />
 
+### Criaremos uma sub-redes entre as duas zonas de disponibilidade, veja as configurações abaixo conforme a imagem
+
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/2edc3ba0-ab2d-47ec-9be1-bd2a8565cd7b" />
+
+### Depois de criarmos, iremos criar nossa instância do Banco de Dados
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/274d3fb5-8a75-4357-a1ae-032914226cab" />
 
