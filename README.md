@@ -16,7 +16,11 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+Para iniciar devemos criar uma VPC
+
 <img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/127989ee-f70a-43c3-8de8-e4cdc0e15331" />
+
+Nas configurações da VPC, siga a imagem abaixo para criação dela já com a configuração de subnets, zonas de disponibilidade e etc
 
 <img width="1891" height="637" alt="image" src="https://github.com/user-attachments/assets/533ad3e2-ae7f-4c1e-8ad8-d3b1f6c21c0d" />
 
@@ -24,7 +28,11 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
+Após a criação, entre nas suas sub-redes para conferir
+
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
+
+Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de linkar o IP Elástico e de escolher a sub-net certa conforme a imagem. Para cada região haverá um Nat Gateway, logo, um nat Gateway para a us-east-1a e outro para us-east-1b
 
 <img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/dc61311f-c234-4e26-918e-86a9cde1132a" />
 
