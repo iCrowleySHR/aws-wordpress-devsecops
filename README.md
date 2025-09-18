@@ -89,7 +89,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 <img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/e99a8f6d-66c1-4a1b-b213-7939235e08d7" />
 
 > Clica em personalizar
-> 
+
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/da8219ca-6b65-4773-9158-78615f48fafa" />
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/3a88152d-0d2a-444b-8bfa-5ab2cfe57a98" />
@@ -144,7 +144,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
 
-
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
 
 
