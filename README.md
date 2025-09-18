@@ -32,7 +32,9 @@ Após a criação, entre nas suas sub-redes para conferir
 
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
-Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de linkar o IP Elástico e de escolher a sub-net certa conforme a imagem. Para cada região haverá um Nat Gateway, logo, um nat Gateway para a us-east-1a e outro para us-east-1b
+---
+
+### Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de linkar o IP Elástico e de escolher a sub-net certa conforme a imagem. Para cada região haverá um Nat Gateway, logo, um nat Gateway para a us-east-1a e outro para us-east-1b
 
 <img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/dc61311f-c234-4e26-918e-86a9cde1132a" />
 
@@ -40,7 +42,9 @@ Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de l
 
 <img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/c4bf3590-9c24-4836-80b0-297df1260eaa" />
 
-Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado, 
+---
+
+### Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado, 
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
