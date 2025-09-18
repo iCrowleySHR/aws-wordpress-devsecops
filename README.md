@@ -90,9 +90,9 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/cace3395-b71d-4156-95dd-400fbec66316" />
 
-> Load balancer, bastion e proprio ip na porta 8080 para o phpmyadmin ;)
+> Load balancer, bastion e próprio ip na porta 8080 para o phpmyadmin 
 
-### RDS (RELATION DATABASE)
+### RDS (RELATIONAL DATABASE)
 
 <img width="1915" height="927" alt="image" src="https://github.com/user-attachments/assets/25db4ce8-3cc6-4b8b-92cb-e69d4a400bb3" />
 
