@@ -40,6 +40,8 @@ Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de l
 
 <img width="1919" height="928" alt="image" src="https://github.com/user-attachments/assets/c4bf3590-9c24-4836-80b0-297df1260eaa" />
 
+Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado, 
+
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/5541e9e5-5e51-4575-bd4e-01ae040f159a" />
