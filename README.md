@@ -1,4 +1,4 @@
-<img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/98197a34-5e3d-4710-9d49-e1518d629f52" /># Wordpress em alta-disponibilidade na AWS
+# Wordpress em alta-disponibilidade na AWS
 
 Essa arquitetura simula um ambiente de produção real, no qual interrupções não podem 
 causar indisponibilidade da aplicação. Além disso, o uso de serviços gerenciados permite 
@@ -154,9 +154,6 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/18c9922a-7dcf-452e-8b4b-15e46a0f31de" />
 
-<img width="1498" height="612" alt="image" src="https://github.com/user-attachments/assets/c93c8e84-19a7-4b08-830a-63cebcc8e8ca" />
-
-<img width="1919" height="929" alt="image" src="https://github.com/user-attachments/assets/755ed431-8f10-4a22-a2da-7179c86b9693" />
 
 
 
