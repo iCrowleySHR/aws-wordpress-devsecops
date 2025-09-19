@@ -158,6 +158,8 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 >  Vá em criar grupo de destino
 
+## Crie o grupo de destino para o Wordpress
+
 <img width="1919" height="696" alt="image" src="https://github.com/user-attachments/assets/18a0fb79-2a93-418e-8337-42caca2c664a" />
 
 <img width="1920" height="526" alt="image" src="https://github.com/user-attachments/assets/0c3f5382-d44c-4188-955e-fb591636aef2" />
@@ -166,7 +168,7 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="862" alt="image" src="https://github.com/user-attachments/assets/71f88d0f-7f82-4998-81e0-017215ed4d3f" />
 
-### Crie outra porta de destino para a porta 8080, para redirecionar o tráfego pro PhpMyAdmin, seguindo a mesma configuração, apenas mudando a porta.
+### Crie outra Grupo de destino para a porta 8080, para redirecionar o tráfego pro PhpMyAdmin, seguindo a mesma configuração, apenas mudando a porta.
 
 ### Anexe os dois target
 
