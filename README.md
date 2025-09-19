@@ -16,11 +16,11 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
-Para iniciar devemos criar uma VPC
+### Para iniciar devemos criar uma VPC
 
 <img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/127989ee-f70a-43c3-8de8-e4cdc0e15331" />
 
-Nas configurações da VPC, siga a imagem abaixo para criação dela já com a configuração de subnets, zonas de disponibilidade e etc
+### Nas configurações da VPC, siga a imagem abaixo para criação dela já com a configuração de subnets, zonas de disponibilidade e etc
 
 <img width="1891" height="637" alt="image" src="https://github.com/user-attachments/assets/533ad3e2-ae7f-4c1e-8ad8-d3b1f6c21c0d" />
 
@@ -28,7 +28,7 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
-## Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS.
+### Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS.
 
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
@@ -90,7 +90,7 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1728" height="717" alt="image" src="https://github.com/user-attachments/assets/fd47bdc7-0a3c-4e1a-98ae-2879011d6ee0" />
 
-> Na porta 8080 do TCP personalizado, deixe com o sg do ALB, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
+> Na porta 8080 do TCP personalizado, deixe com o SG do Load Balance, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
 
 ### RDS (RELATIONAL DATABASE)
 
@@ -110,6 +110,8 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/2edc3ba0-ab2d-47ec-9be1-bd2a8565cd7b" />
 
+---
+
 ### Depois de criarmos, iremos criar nossa instância do Banco de Dados
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/274d3fb5-8a75-4357-a1ae-032914226cab" />
@@ -124,7 +126,11 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="504" alt="image" src="https://github.com/user-attachments/assets/2915d236-90dd-4594-a668-738d8dcae120" />
 
-> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instancia!
+> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instancia! Se não vai dar erro de falta de conexão no Wordpress
+
+---
+
+### Agora vamos configurar e criar o EFS
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/5c95e978-4e2a-4686-a202-75123f551585" />
 
@@ -170,6 +176,32 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 ### Crie outra Grupo de destino para a porta 8080, para redirecionar o tráfego pro PhpMyAdmin, seguindo a mesma configuração, apenas mudando a porta.
 
+
+<img width="1641" height="827" alt="image" src="https://github.com/user-attachments/assets/887c20df-9d37-4abd-915e-c2c05f9f22cc" />
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/18c9922a-7dcf-452e-8b4b-15e46a0f31de" />
+
+
+
+<img width="1427" height="697" alt="image" src="https://github.com/user-attachments/assets/07286063-3353-4e7b-a602-3cb970008fd8" />
+
+> Errei nos Target Group, porém, coloque o 80 no Wordpress e o 8080 no phpMyAdmin
+
+> Na imagem está as duas portas no phpMyAdmin
+
+<img width="1373" height="509" alt="image" src="https://github.com/user-attachments/assets/ba12e597-d5a1-43e6-83b1-4b46db23007a" />
+
+
+
+
+
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/adcac135-0a95-4ff6-866e-e572391902ed" />
+
+
+
+
+
 ### Anexe os dois target
 
 <img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/e76e6175-db74-40c6-b44d-3a052f987417" />
@@ -184,34 +216,31 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/85d5cb9f-000b-45e7-bb00-d8bb2f64704c" />
 
-<img width="1917" height="785" alt="image" src="https://github.com/user-attachments/assets/5ef45330-b5d6-4134-aa48-d7cf1b479887" />
+<img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/6f6e5334-88d6-423f-95e8-083bae0b6dc2" />
 
 <img width="1915" height="709" alt="image" src="https://github.com/user-attachments/assets/0c0a6950-f96d-424d-b816-6a701efea4dc" />
+
+
 
 <img width="1919" height="694" alt="image" src="https://github.com/user-attachments/assets/beeee04f-4a35-4525-a111-283d9f1301ac" />
 
 <img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
 
+### Pegue o DNS do seu Load Balance que você já vai conseguir acessar, colocando o porta 8080 você consegue acessar o phpMyAdmin
+
+#### Para o Wordpress
+
+```bash
+http://SEUDNSALB.COM:80
+```
+
+#### Para o phpMyAdmin
+
+```bash
+http://SEUDNSALB.COM:8080
+```
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
-
-<img width="1920" height="908" alt="image" src="https://github.com/user-attachments/assets/72ffb6bc-8d22-4a97-8de0-5759ccace28d" />
-
-<img width="1641" height="827" alt="image" src="https://github.com/user-attachments/assets/887c20df-9d37-4abd-915e-c2c05f9f22cc" />
-
-<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/18c9922a-7dcf-452e-8b4b-15e46a0f31de" />
-
-
-
-<img width="1427" height="697" alt="image" src="https://github.com/user-attachments/assets/07286063-3353-4e7b-a602-3cb970008fd8" />
-
-<img width="1373" height="509" alt="image" src="https://github.com/user-attachments/assets/ba12e597-d5a1-43e6-83b1-4b46db23007a" />
-
-<img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/6f6e5334-88d6-423f-95e8-083bae0b6dc2" />
-
-> Errei nos target group, coloque o 80 no wordpress e o  8080 no phpmyadmin
-
-<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/adcac135-0a95-4ff6-866e-e572391902ed" />
-
 
 
 
