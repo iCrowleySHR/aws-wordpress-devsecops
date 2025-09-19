@@ -1,53 +1,68 @@
 #!/bin/bash
-# Atualiza os pacotes do sistema
-yum update -y
+sudo su
+sleep 45
+apt update -y
 
-# Instala pacotes necessários
-yum install -y ca-certificates wget amazon-efs-utils
+apt install -y apt-transport-https ca-certificates curl software-properties-common nfs-common
 
-# Instala o Docker
-yum install -y docker
 
-# Inicia e habilita o serviço do Docker
-systemctl enable docker
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+apt update -y
+
+apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+
 systemctl start docker
+systemctl enable docker
+usermod -a -G docker ubuntu 
 
-# Adiciona o usuário ec2-user ao grupo docker
-usermod -aG docker ec2-user
 
-# Instala o Docker Compose manualmente
-curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+apt install docker-compose-plugin -y
 
-# Cria o diretório de montagem do EFS
-mkdir -p /efs
 
-# Monta o sistema de arquivos EFS
-sudo mount -t efs -o tls fs-03ca53046c3c6b6ec:/ /efs
+EFS_ID="SEU_EFS_ID"
+AWS_REGION="SUA_REGIAO_AWS"
+EFS_MOUNT_POINT="/mnt/efs-wordpress"
 
-# Cria diretório para o WordPress dentro do EFS
-mkdir -p /efs/wordpress
+mkdir -p ${EFS_MOUNT_POINT}
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${EFS_ID}.efs.${AWS_REGION}.amazonaws.com:/ ${EFS_MOUNT_POINT}
+echo "${EFS_ID}.efs.${AWS_REGION}.amazonaws.com:/ ${EFS_MOUNT_POINT} nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0" >> /etc/fstab
 
-# Cria o docker-compose.yml usando cat
-cat <<EOF > /home/ec2-user/docker-compose.yml
-version: "3.8"
 
+PROJECT_DIR="/home/ubuntu/wordpress-project"
+mkdir -p ${PROJECT_DIR}
+WORDPRESS_FILES_PATH="${EFS_MOUNT_POINT}/html"
+mkdir -p ${WORDPRESS_FILES_PATH}
+
+DB_HOST="SEU_ENDPOINT_DO_RDS_AQUI"
+DB_USER="SEU_USUARIO_DO_BANCO_AQUI"
+DB_PASSWORD="SUA_SENHA_DO_BANCO_AQUI"
+DB_NAME="SEU_NOME_DO_BANCO_AQUI"
+
+cat <<EOF > ${PROJECT_DIR}/docker-compose.yml
+version: '3.8'
 services:
-  web:
-    image: wordpress
+  wordpress:
+    image: wordpress:php8.3-apache
+    container_name: wordpress
     restart: always
     ports:
       - "80:80"
     environment:
-      WORDPRESS_DB_HOST: 
-      WORDPRESS_DB_USER: admin
-      WORDPRESS_DB_PASSWORD: ""
-      WORDPRESS_DB_NAME: 
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
     volumes:
-      - /efs/wordpress:/var/www/html
-    networks:
-      - tunel
+      - ${WORDPRESS_FILES_PATH}:/var/www/html/
+
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: phpmyadmin
@@ -55,17 +70,10 @@ services:
     ports:
       - "8080:80"
     environment:
-      PMA_HOST: 
+      PMA_HOST: ${DB_HOST}
       PMA_PORT: 3306
-
-networks:
-  tunel:
-    driver: bridge
 EOF
 
-# Ajusta permissões
-chown ec2-user:ec2-user /home/ec2-user/docker-compose.yml
-
-# Inicia os containers com Docker Compose
-cd /home/ec2-user
-docker-compose up -d
+sudo chown -R 33:33 ${WORDPRESS_FILES_PATH}
+cd ${PROJECT_DIR}
+docker compose up -d
