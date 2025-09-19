@@ -196,6 +196,21 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 
 
+<img width="1427" height="697" alt="image" src="https://github.com/user-attachments/assets/07286063-3353-4e7b-a602-3cb970008fd8" />
+
+<img width="1373" height="509" alt="image" src="https://github.com/user-attachments/assets/ba12e597-d5a1-43e6-83b1-4b46db23007a" />
+
+<img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/6f6e5334-88d6-423f-95e8-083bae0b6dc2" />
+
+> Errei nos target group, coloque o 80 no wordpress e o  8080 no phpmyadmin
+
+<img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/adcac135-0a95-4ff6-866e-e572391902ed" />
+
+
+
+
+
+
 
 
 
