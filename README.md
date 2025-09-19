@@ -16,6 +16,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## VPC
 ### Para iniciar devemos criar uma VPC
 
 <img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/127989ee-f70a-43c3-8de8-e4cdc0e15331" />
@@ -28,11 +29,13 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
-### Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS.
+### Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS (data).
 
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
 ---
+
+## Nat Gateway
 
 ### Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de linkar o IP Elástico e de escolher a sub-net certa conforme a imagem. Para cada região haverá um Nat Gateway, logo, um nat Gateway para a us-east-1a e outro para us-east-1b
 
@@ -44,6 +47,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## Tabela de Rotas e Associação do Nat Gateway
 ### Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado nas duas regiões
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
@@ -68,12 +72,14 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## Revisão do Mapa de Recursos
 ### Com isso, no mapa de recursos da sua VPC, deve ser esse o resultado que você vai encontrar, caso esteja diferente, pode ter ocorrido algum má configuração da aplicação
 
 <img width="1674" height="407" alt="image" src="https://github.com/user-attachments/assets/1d43e7d8-cf39-4b34-b571-867c95fb4148" />
 
 --- 
 
+## Grupo de Segurança
 ### Agora iremos configurar os grupos de segurança da nossa aplicação, veja as configurações conforme o diagrama
 
 <img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/b2cd5d71-e013-4d08-9086-c6e730feb9e2" />
@@ -90,7 +96,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1728" height="717" alt="image" src="https://github.com/user-attachments/assets/fd47bdc7-0a3c-4e1a-98ae-2879011d6ee0" />
 
-> Na porta 8080 do TCP personalizado, deixe com o SG do Load Balance, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
+> Na porta 8080 do TCP personalizado, deixe com o Grupo de Segurança do Load Balance, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
 
 ### RDS (RELATIONAL DATABASE)
 
@@ -102,6 +108,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## Subnet do RDS
 ### Agora iremos no serviço Aurora and RDS, nela iremos na configuração `Grupos de sub-redes`
 
 <img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/2064ad1f-f4a8-41b6-9ba3-e62b2b94f009" />
@@ -112,6 +119,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## Banco de Dados RDS
 ### Depois de criarmos, iremos criar nossa instância do Banco de Dados
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/274d3fb5-8a75-4357-a1ae-032914226cab" />
@@ -130,6 +138,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
+## EFS
 ### Agora vamos configurar e criar o EFS
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/5c95e978-4e2a-4686-a202-75123f551585" />
@@ -142,6 +151,14 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/3a88152d-0d2a-444b-8bfa-5ab2cfe57a98" />
 
+> Coloque a subnet (data) da sua respectiva região e o Grupo de Segurança do EFS que criamos anteriormente 
+
+---
+
+## Launch Template (Modelo de execução)
+### Para as nossas instâncias já vierem configurada, iremos usar um Launch Template junto com o User Data do nosso repositório
+#### Lembre-se de colocar as suas credencias para conexão do banco do phpMyAdmin, Wordpress e montagem do EFS
+
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/145fdeff-7e8e-43f3-be30-c9a954bb6962" />
 
 <img width="1917" height="466" alt="image" src="https://github.com/user-attachments/assets/09764daa-e41f-4a84-a6e2-78a1c87e3d77" />
@@ -149,6 +166,13 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 <img width="1077" height="558" alt="image" src="https://github.com/user-attachments/assets/6bac01a2-332d-455c-ad7c-a915335dc2da" />
 
 <img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/2336de80-2c3b-41c2-be89-bb2255aef243" />
+
+> Troque as variaves com as suas credencias do seu RDS (senha, user, host e banco), região da AWS e id da EFS
+
+---
+
+## Application Load Balancer
+### Para fazer o direcionamento de rotas para as instâncias, vamos configurar o ALB. Nessa etapa também criamos o Targets Groups (Grupos de destino)
 
 <img width="1917" height="974" alt="image" src="https://github.com/user-attachments/assets/858168b4-31ad-4574-b13d-76acd2b55ff4" />
 
@@ -164,7 +188,8 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 >  Vá em criar grupo de destino
 
-## Crie o grupo de destino para o Wordpress
+## Grupos de destino
+### Crie o grupo de destino para o Wordpress
 
 <img width="1919" height="696" alt="image" src="https://github.com/user-attachments/assets/18a0fb79-2a93-418e-8337-42caca2c664a" />
 
@@ -181,7 +206,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/18c9922a-7dcf-452e-8b4b-15e46a0f31de" />
 
-
+## ALB + Target Group
 
 <img width="1427" height="697" alt="image" src="https://github.com/user-attachments/assets/07286063-3353-4e7b-a602-3cb970008fd8" />
 
@@ -192,23 +217,15 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 <img width="1373" height="509" alt="image" src="https://github.com/user-attachments/assets/ba12e597-d5a1-43e6-83b1-4b46db23007a" />
 
 
-
-
-
+#### No final ficará assim, a 80 para o Wordpress e o 8080 para o phpMyAdmin
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/adcac135-0a95-4ff6-866e-e572391902ed" />
 
+---
 
+## Configuração do Auto Scaling
+### Para ter o escalonamento automático da nossa Lauch Template pré configurada, vamos usar o Auto Scaling
 
-
-
-### Anexe os dois target
-
-<img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/e76e6175-db74-40c6-b44d-3a052f987417" />
-
-<img width="1920" height="689" alt="image" src="https://github.com/user-attachments/assets/d129c85b-d9a3-41ba-859f-aa1f5b273bab" />
-
-<img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/a2da9cce-2faf-4c01-b6f5-d23b2c190d2b" />
 
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/cda016c0-47c9-4a0b-bd99-41b36d5b5d49" />
 
@@ -226,6 +243,10 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
 
+---
+
+## Conclusão
+
 ### Pegue o DNS do seu Load Balance que você já vai conseguir acessar, colocando o porta 8080 você consegue acessar o phpMyAdmin
 
 #### Para o Wordpress
@@ -242,64 +263,4 @@ http://SEUDNSALB.COM:8080
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Veja o vídeo abaixo da aplicação funcionando
