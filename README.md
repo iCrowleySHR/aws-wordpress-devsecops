@@ -166,6 +166,10 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 <img width="1920" height="862" alt="image" src="https://github.com/user-attachments/assets/71f88d0f-7f82-4998-81e0-017215ed4d3f" />
 
+### Crie outra porta de destino para a porta 8080, para redirecionar o tráfego pro PhpMyAdmin, seguindo a mesma configuração, apenas mudando a porta.
+
+### Anexe os dois target
+
 <img width="1920" height="936" alt="image" src="https://github.com/user-attachments/assets/e76e6175-db74-40c6-b44d-3a052f987417" />
 
 <img width="1920" height="689" alt="image" src="https://github.com/user-attachments/assets/d129c85b-d9a3-41ba-859f-aa1f5b273bab" />
