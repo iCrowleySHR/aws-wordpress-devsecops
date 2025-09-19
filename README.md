@@ -134,7 +134,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="504" alt="image" src="https://github.com/user-attachments/assets/2915d236-90dd-4594-a668-738d8dcae120" />
 
-> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instancia! Se não vai dar erro de falta de conexão no Wordpress
+> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instância! Se não vai dar erro de falta de conexão no Wordpress
 
 ---
 
@@ -167,7 +167,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/2336de80-2c3b-41c2-be89-bb2255aef243" />
 
-> Troque as variaves com as suas credencias do seu RDS (senha, user, host e banco), região da AWS e id da EFS
+> Troque as variaves com as suas credenciais do seu RDS (senha, user, host e banco), região da AWS e id da EFS
 
 ---
 
