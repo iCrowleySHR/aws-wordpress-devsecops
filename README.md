@@ -88,9 +88,9 @@ Nas configurações da VPC, siga a imagem abaixo para criação dela já com a c
 
 ### EC2
 
-<img width="1919" height="922" alt="image" src="https://github.com/user-attachments/assets/cace3395-b71d-4156-95dd-400fbec66316" />
+<img width="1728" height="717" alt="image" src="https://github.com/user-attachments/assets/fd47bdc7-0a3c-4e1a-98ae-2879011d6ee0" />
 
-> Load balancer, bastion e próprio ip na porta 8080 para o phpmyadmin 
+> Na porta 8080 do TCP personalizado, deixe com o sg do ALB, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
 
 ### RDS (RELATIONAL DATABASE)
 
