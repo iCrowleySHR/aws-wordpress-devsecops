@@ -52,11 +52,15 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
+### `Wordpress-rtb-private1-us-east-1a` Associe a `nat-gateway-a` como na imagem
+
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/5541e9e5-5e51-4575-bd4e-01ae040f159a" />
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/c3f25010-35ce-4ede-a254-8b9703f9989e" />
 
 <img width="1920" height="938" alt="image" src="https://github.com/user-attachments/assets/27064aed-1b8d-4ded-a5c5-3541346773ca" />
+
+### Agora faça a associação de sub-nets conforme está na imagem, com Data e App da mesma região
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/08f2dca8-770e-4ddd-9b29-078e4ad43cd7" />
 
@@ -224,7 +228,7 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 ---
 
 ## Configuração do Auto Scaling
-### Para ter o escalonamento automático da nossa Lauch Template pré configurada, vamos usar o Auto Scaling
+### Para ter o escalonamento automático da nossa Launch Template pré configurada, vamos usar o Auto Scaling
 
 
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/cda016c0-47c9-4a0b-bd99-41b36d5b5d49" />
