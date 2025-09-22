@@ -52,7 +52,9 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
 
-### `Wordpress-rtb-private1-us-east-1a` Associe a `nat-gateway-a` como na imagem
+### `Wordpress-rtb-private1-us-east-1a` 
+
+Associe a `nat-gateway-a` como na imagem
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/5541e9e5-5e51-4575-bd4e-01ae040f159a" />
 
@@ -60,11 +62,19 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="938" alt="image" src="https://github.com/user-attachments/assets/27064aed-1b8d-4ded-a5c5-3541346773ca" />
 
-### Agora faça a associação de sub-nets conforme está na imagem, com Data e App da mesma região
+### Associação de subnets
+
+Associe o subnet data e app na `Wordpress-rtb-private1-us-east-1a` como segue na imagem
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/08f2dca8-770e-4ddd-9b29-078e4ad43cd7" />
 
 <img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/0d3d8daf-8009-47a9-89f2-78c77e2a2bb3" />
+
+### Mesmo processo
+
+Agora faça o mesmo processo conforme as imagens da subnet privada da região `us-east-1b`. Faça a associação de subnets e do `nat-gateway-b`
+
+`Wordpress-rtb-private2-us-east-1b`
 
 <img width="1890" height="928" alt="image" src="https://github.com/user-attachments/assets/948ac489-babb-494e-8a9e-d3083647633e" />
 
