@@ -183,6 +183,8 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 > Troque as variaves com as suas credenciais do seu RDS (senha, user, host e banco), região da AWS e id da EFS
 
+> Está em configuração avançadas o textarea para colocar o userdata
+
 ---
 
 ## Application Load Balancer
