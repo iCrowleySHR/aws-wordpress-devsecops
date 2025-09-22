@@ -171,11 +171,13 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 ## Launch Template (Modelo de execução)
 ### Para as nossas instâncias já vierem configurada, iremos usar um Launch Template junto com o User Data do nosso repositório
-#### Lembre-se de colocar as suas credencias para conexão do banco do phpMyAdmin, Wordpress e montagem do EFS
+#### Lembre-se de colocar as suas credenciais para conexão do banco do phpMyAdmin, Wordpress e montagem do EFS no User Data
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/145fdeff-7e8e-43f3-be30-c9a954bb6962" />
 
 <img width="1917" height="466" alt="image" src="https://github.com/user-attachments/assets/09764daa-e41f-4a84-a6e2-78a1c87e3d77" />
+
+<img width="1040" height="613" alt="image" src="https://github.com/user-attachments/assets/73356320-9077-414a-9815-20c29dec305d" />
 
 <img width="1077" height="558" alt="image" src="https://github.com/user-attachments/assets/6bac01a2-332d-455c-ad7c-a915335dc2da" />
 
@@ -280,3 +282,7 @@ http://SEUDNSALB.COM:8080
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
 ## Veja o vídeo abaixo da aplicação funcionando
+
+<a href="https://www.youtube.com/watch?v=doqmcvtWcrM" target="_blank">
+  <img width="1275" height="665" alt="image" src="https://github.com/user-attachments/assets/d59ce3a0-7c60-4fcf-8723-ff056415c7f4" />
+</a>
