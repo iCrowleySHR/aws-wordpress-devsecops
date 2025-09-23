@@ -183,7 +183,7 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 <img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/2336de80-2c3b-41c2-be89-bb2255aef243" />
 
-> Troque as variaves com as suas credenciais do seu RDS (senha, user, host e banco), região da AWS e id da EFS
+> Troque as variáveis com as suas credenciais do seu RDS (senha, user, host e banco), região da AWS e id da EFS
 
 > Está em configuração avançadas o textarea para colocar o userdata
 
@@ -278,6 +278,10 @@ http://SEUDNSALB.COM:80
 ```bash
 http://SEUDNSALB.COM:8080
 ```
+
+> Caso mude seu IP, você não irá conseguir acessar o phpMyAdmin
+
+> Lembre-se, se mudar a URL você precisará mudar no banco de dados o site_url (Nova DNS do ALB). Senão não irá carregar as estilizações do CSS e outras configurações.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
