@@ -279,9 +279,9 @@ http://SEUDNSALB.COM:80
 http://SEUDNSALB.COM:8080
 ```
 
-> Caso mude seu IP, você não irá conseguir acessar o phpMyAdmin
+> Caso mude seu IP, você não irá conseguir acessar o phpMyAdmin. Basta arruma no SG do ALB
 
-> Lembre-se, se mudar a URL você precisará mudar no banco de dados o site_url (Nova DNS do ALB). Senão não irá carregar as estilizações do CSS e outras configurações.
+> Lembre-se, se mudar a URL do ALB você precisará mudar no banco de dados o site_url (Nova DNS do ALB). Senão não irá carregar as estilizações do CSS e outras configurações do Wordpress.
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
