@@ -1,27 +1,49 @@
-# Wordpress em alta-disponibilidade na AWS
+# WordPress em Alta Disponibilidade na AWS
 
-Essa arquitetura simula um ambiente de produção real, no qual interrupções não podem 
-causar indisponibilidade da aplicação. Além disso, o uso de serviços gerenciados permite 
-focar na lógica de implantação e escalabilidade, sem a necessidade de gerenciar 
-manualmente servidores de banco de dados ou sistemas de arquivos distribuídos.
+Esta arquitetura simula um ambiente de produção real, onde interrupções não podem causar indisponibilidade da aplicação. A utilização de serviços gerenciados permite focar na lógica de implantação e escalabilidade, sem a necessidade de gerenciar manualmente servidores de banco de dados ou sistemas de arquivos distribuídos.
 
-Este projeto tem como objetivo desenvolver competências práticas em infraestrutura como 
-código, provisionamento de recursos em nuvem, e arquiteturas resilientes, utilizando 
-ferramentas modernas e os serviços oferecidos pela AWS
+Este projeto tem como objetivo desenvolver competências práticas em infraestrutura como código, provisionamento de recursos em nuvem e arquiteturas resilientes, utilizando ferramentas modernas e os serviços oferecidos pela AWS.
 
-# Como fazer?
-Veja o passo a passo a seguir para criar essa aplicação na AWS
+## Arquitetura da Solução
 
-<img width="1219" height="550" alt="image" src="https://github.com/user-attachments/assets/825ec8af-1eb9-4bbd-b727-693494b9da12" />
+![Diagrama da Arquitetura](https://github.com/user-attachments/assets/825ec8af-1eb9-4bbd-b727-693494b9da12)
+
+## 📋 Índice
+
+- [VPC e Subnets](#vpc-e-subnets)
+- [NAT Gateway](#nat-gateway)
+- [Tabelas de Rota](#tabelas-de-rota)
+- [Grupos de Segurança](#grupos-de-segurança)
+- [RDS (Banco de Dados)](#rds-banco-de-dados)
+- [EFS (Sistema de Arquivos)](#efs-sistema-de-arquivos)
+- [Launch Template](#launch-template)
+- [Application Load Balancer](#application-load-balancer)
+- [Auto Scaling](#auto-scaling)
+- [Configuração Final](#configuração-final)
+
 
 ---
 
-## VPC
-### Para iniciar devemos criar uma VPC
+## VPC e Subnets
+
+### Criação da VPC
+
+1. Acesse o serviço *VPC* no console AWS
+2. Clique em *"Create VPC"*
+3. Configure conforme a imagem abaixo:
+
+*Configurações:*
+- *Resources to create*: VPC and more
+- *Name tag auto-generation*: Wordpress
+- *IPv4 CIDR block*: 10.0.0.0/16
+- *Number of Availability Zones*: 2
+- *Number of public subnets*: 2
+- *Number of private subnets*: 4
+- *NAT gateways*: 2 (uma por AZ)
+
+
 
 <img width="1920" height="878" alt="image" src="https://github.com/user-attachments/assets/127989ee-f70a-43c3-8de8-e4cdc0e15331" />
-
-### Nas configurações da VPC, siga a imagem abaixo para criação dela já com a configuração de subnets, zonas de disponibilidade e etc
 
 <img width="1891" height="637" alt="image" src="https://github.com/user-attachments/assets/533ad3e2-ae7f-4c1e-8ad8-d3b1f6c21c0d" />
 
@@ -29,15 +51,29 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 <img width="1920" height="860" alt="image" src="https://github.com/user-attachments/assets/1ade46ce-5ec4-4371-8e7b-73e0191cbd76" />
 
-### Após a criação, entre nas suas sub-redes para conferir, alteraremos o nome para melhor compreensão, sendo duas subnets para aplicação (app), duas públicas (public) e duas para o EFS e RDS (data).
+### Nomenclatura das Subnets
+
+Após a criação, renomeie as subnets para melhor identificação:
+
+- *Public subnets*: wordpress-public1-us-east-1a, wordpress-public2-us-east-1b
+- *Private subnets (app)*: wordpress-subnet-private3(app)-us-east-1a, wordpress-subnet-private4(app)-us-east-1b
+- *Private subnets (data)*: wordpress-subnet-private1(data)-us-east-1a, wordpress-subnet-private2(data)-us-east-1b
 
 <img width="1920" height="468" alt="image" src="https://github.com/user-attachments/assets/f1f46bf8-cc58-43c3-940f-1d4cd343d61c" />
 
 ---
 
-## Nat Gateway
+### Criação dos NAT Gateways
 
-### Agora devemos criar duas Nat Gateways para seguir com o diagrama, lembre-se de linkar o IP Elástico e de escolher a sub-net certa conforme a imagem. Para cada região haverá um Nat Gateway, logo, um nat Gateway para a us-east-1a e outro para us-east-1b
+Crie dois NAT Gateways, um para cada zona de disponibilidade:
+
+*NAT Gateway A (us-east-1a):*
+- *Subnet*: wordpress-public1-us-east-1a
+- *Elastic IP allocation*: Alocar novo IP elástico
+
+*NAT Gateway B (us-east-1b):*
+- *Subnet*: wordpress-public2-us-east-1b 
+- *Elastic IP allocation*: Alocar novo IP elástico
 
 <img width="1919" height="904" alt="image" src="https://github.com/user-attachments/assets/dc61311f-c234-4e26-918e-86a9cde1132a" />
 
@@ -47,12 +83,19 @@ Veja o passo a passo a seguir para criar essa aplicação na AWS
 
 ---
 
-## Tabela de Rotas e Associação do Nat Gateway
-### Nas tabelas de rotas, devemos colocar os nat gateways criado e associar as sub-redes de data e app. Segue o passo a passo em imagens de como foi aplicado nas duas regiões
+## Tabelas de Rota
 
-<img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/fdeaf6f2-73d4-4563-b39e-16c67e7b839e" />
+### Configuração das Rotas Privadas
 
-### `Wordpress-rtb-private1-us-east-1a` 
+*Para Wordpress-rtb-private1-us-east-1a:*
+- Adicione rota: 0.0.0.0/0 → nat-gateway-a
+- Associe as subnets: wordpress-data1-us-east-1a e wordpress-app1-us-east-1a
+
+*Para Wordpress-rtb-private2-us-east-1b:*
+- Adicione rota: 0.0.0.0/0 → nat-gateway-b
+- Associe as subnets: wordpress-data2-us-east-1b e wordpress-app2-us-east-1b
+
+## Wordpress-rtb-private1-us-east-1a
 
 Associe a `nat-gateway-a` como na imagem
 
@@ -62,23 +105,23 @@ Associe a `nat-gateway-a` como na imagem
 
 <img width="1920" height="938" alt="image" src="https://github.com/user-attachments/assets/27064aed-1b8d-4ded-a5c5-3541346773ca" />
 
-### Associação de subnets
+> #### Associe o subnet data e app da região na *Wordpress-rtb-private1-us-east-1a*
 
-Associe o subnet data e app na `Wordpress-rtb-private1-us-east-1a` como segue na imagem
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/08f2dca8-770e-4ddd-9b29-078e4ad43cd7" />
 
 <img width="1915" height="928" alt="image" src="https://github.com/user-attachments/assets/0d3d8daf-8009-47a9-89f2-78c77e2a2bb3" />
 
-### Mesmo processo
 
-Agora faça o mesmo processo conforme as imagens da subnet privada da região `us-east-1b`. Faça a associação de subnets e do `nat-gateway-b`
+## Wordpress-rtb-private2-us-east-1b
 
-`Wordpress-rtb-private2-us-east-1b`
+Associe a `nat-gateway-b` como na imagem
 
 <img width="1890" height="928" alt="image" src="https://github.com/user-attachments/assets/948ac489-babb-494e-8a9e-d3083647633e" />
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/da2b81df-67c0-4296-aeb5-38e8a6ced4f2" />
+
+> #### Associe o subnet data e app da região na *Wordpress-rtb-private2-us-east-1b*
 
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/1375278c-358c-4cbc-bbae-f37c2e04bc8e" />
 
@@ -86,55 +129,98 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 ---
 
-## Revisão do Mapa de Recursos
-### Com isso, no mapa de recursos da sua VPC, deve ser esse o resultado que você vai encontrar, caso esteja diferente, pode ter ocorrido algum má configuração da aplicação
+### Mapa de Recursos Final
+
+O mapa de recursos da VPC deve ficar assim:
 
 <img width="1674" height="407" alt="image" src="https://github.com/user-attachments/assets/1d43e7d8-cf39-4b34-b571-867c95fb4148" />
 
 --- 
 
 ## Grupo de Segurança
-### Agora iremos configurar os grupos de segurança da nossa aplicação, veja as configurações conforme o diagrama
 
-<img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/b2cd5d71-e013-4d08-9086-c6e730feb9e2" />
+### 1. Load Balancer Security Group
+*Entrada:*
+- HTTP (80) - 0.0.0.0/0
+- HTTP (8080) - Meu IP
+  
+*Saída:*
+- All traffic
 
-### Load Balancer
+<img width="1716" height="344" alt="image" src="https://github.com/user-attachments/assets/1f46065f-93d7-49be-beb1-cf644eed5f3e" />
 
-<img width="1920" height="803" alt="image" src="https://github.com/user-attachments/assets/6c6d5014-9409-4c6a-8024-a90d6441f41c" />
 
-### Bastion
+### 2. Bastion Security Group
+*Entrada:*
+- SSH (22) - Meu IP
+  
+*Saída:*
+- All traffic
 
 <img width="1920" height="933" alt="image" src="https://github.com/user-attachments/assets/07ef4061-ae61-477d-8bcc-9eb78be546cf" />
 
-### EC2
+### 3. EC2 Security Group  
+*Entrada:*
+- HTTP (80) - Load Balancer SG
+- TCP (8080) - Load Balancer SG
+- SSH (22) - Bastion SG
+  
+*Saída:*
+- All traffic
 
 <img width="1728" height="717" alt="image" src="https://github.com/user-attachments/assets/fd47bdc7-0a3c-4e1a-98ae-2879011d6ee0" />
 
-> Na porta 8080 do TCP personalizado, deixe com o Grupo de Segurança do Load Balance, igual a do Wordpress na porta 80, na porta 22 o SG do Bastion
+> Na porta 8080 do TCP personalizado, deixe com o Grupo de Segurança do Load Balance, igual a do Wordpress na porta 80, e na porta 22 o SG do Bastion
 
-### RDS (RELATIONAL DATABASE)
+### 4. RDS Security Group
+*Entrada:*
+- MySQL/Aurora (3306) - EC2 SG
+  
+*Saída:*
+- All traffic
 
 <img width="1915" height="927" alt="image" src="https://github.com/user-attachments/assets/25db4ce8-3cc6-4b8b-92cb-e69d4a400bb3" />
 
-### EFS
+### 5. EFS Security Group
+*Entrada:*
+- NFS (2049) - EC2 SG
+  
+*Saída:*
+- All traffic
 
 <img width="1920" height="923" alt="image" src="https://github.com/user-attachments/assets/19c5dbe8-65c9-4e84-ae86-9bc5dab2f287" />
 
 ---
 
-## Subnet do RDS
-### Agora iremos no serviço Aurora and RDS, nela iremos na configuração `Grupos de sub-redes`
+## RDS (Banco de Dados)
 
-<img width="1920" height="935" alt="image" src="https://github.com/user-attachments/assets/2064ad1f-f4a8-41b6-9ba3-e62b2b94f009" />
+### Criação do Subnet Group
 
-### Criaremos uma sub-redes entre as duas zonas de disponibilidade, veja as configurações abaixo conforme a imagem
+1. Acesse *RDS* → *Subnet groups*
+2. Clique em *"Create DB subnet group"*
+3. Configure com as subnets data de cada região
+
+Criaremos uma sub-redes entre as duas zonas de disponibilidade, veja as configurações abaixo conforme a imagem
 
 <img width="1920" height="930" alt="image" src="https://github.com/user-attachments/assets/2edc3ba0-ab2d-47ec-9be1-bd2a8565cd7b" />
 
 ---
 
 ## Banco de Dados RDS
-### Depois de criarmos, iremos criar nossa instância do Banco de Dados
+
+*Configurações principais:*
+- *Engine type*: MySQL
+- *Template*: Nivel Gratuito
+- *DB instance identifier*: wordpress-db
+- *Master username*: admin
+- *Master password*: [Senha segura]
+- *DB instance class*: db.t3.micro
+- *Storage*: 20GB GP2
+- *VPC*: Wordpress VPC
+- *Subnet group*: Criado anteriormente
+- *Public access*: No
+- *VPC security group*: RDS Security Group
+- *Database name*: wordpress-db
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/274d3fb5-8a75-4357-a1ae-032914226cab" />
 
@@ -148,18 +234,28 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 <img width="1920" height="504" alt="image" src="https://github.com/user-attachments/assets/2915d236-90dd-4594-a668-738d8dcae120" />
 
-> Vá em configurações adicionais e crie o nome do banco com o mesmo nome da instância! Se não vai dar erro de falta de conexão no Wordpress
+> *Importante*: Na seção "Additional configuration", defina o nome do banco igual ao nome da instância!
 
 ---
 
-## EFS
-### Agora vamos configurar e criar o EFS
+## EFS (Sistema de Arquivos)
+
+*Configurações:*
+- *Name*: wordpress
+- *VPC*: Wordpress VPC
+- *Mount targets*: Crie para cada subnet data (us-east-1a e us-east-1b)
+- *Security groups*: EFS Security Group
+
+### Criação do File System
+
+1. Acesse *EFS* → *Create file system*
+2. Configure conforme imagens:
 
 <img width="1920" height="929" alt="image" src="https://github.com/user-attachments/assets/5c95e978-4e2a-4686-a202-75123f551585" />
 
 <img width="1920" height="888" alt="image" src="https://github.com/user-attachments/assets/e99a8f6d-66c1-4a1b-b213-7939235e08d7" />
 
-> Clica em personalizar
+> Clique em personalizar
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/da8219ca-6b65-4773-9158-78615f48fafa" />
 
@@ -170,8 +266,103 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 ---
 
 ## Launch Template (Modelo de execução)
-### Para as nossas instâncias já vierem configurada, iremos usar um Launch Template junto com o User Data do nosso repositório
-#### Lembre-se de colocar as suas credenciais para conexão do banco do phpMyAdmin, Wordpress e montagem do EFS no User Data
+
+### Criação do Template
+
+1. Acesse *EC2* → *Launch Templates* → *Create launch template*
+2. Configure conforme imagens:
+
+*Configurações Básicas:*
+- *Name*: wordpress-template
+- *AMI*: Ubuntu
+- *Instance type*: t3.micro
+- *Key pair*: Sua chave existente ou nova
+- *Security groups*: EC2 Security Group
+
+>  *Importante*: Lembre-se de colocar as suas credenciais para conexão do banco do phpMyAdmin, Wordpress e montagem do EFS no User Data
+
+*User Data (Script de inicialização):*
+```bash
+#!/bin/bash
+sudo su
+sleep 45
+apt update -y
+
+apt install -y apt-transport-https ca-certificates curl software-properties-common nfs-common
+
+
+install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+chmod a+r /etc/apt/keyrings/docker.asc
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+apt update -y
+
+apt install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin
+
+systemctl start docker
+systemctl enable docker
+usermod -a -G docker ubuntu 
+
+
+apt install docker-compose-plugin -y
+
+
+EFS_ID="SEU_EFS_ID"
+AWS_REGION="SUA_REGIAO_AWS"
+EFS_MOUNT_POINT="/mnt/efs-wordpress"
+
+mkdir -p ${EFS_MOUNT_POINT}
+mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${EFS_ID}.efs.${AWS_REGION}.amazonaws.com:/ ${EFS_MOUNT_POINT}
+echo "${EFS_ID}.efs.${AWS_REGION}.amazonaws.com:/ ${EFS_MOUNT_POINT} nfs4 nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport,_netdev 0 0" >> /etc/fstab
+
+
+PROJECT_DIR="/home/ubuntu/wordpress-project"
+mkdir -p ${PROJECT_DIR}
+WORDPRESS_FILES_PATH="${EFS_MOUNT_POINT}/html"
+mkdir -p ${WORDPRESS_FILES_PATH}
+
+DB_HOST="SEU_ENDPOINT_DO_RDS_AQUI"
+DB_USER="SEU_USUARIO_DO_BANCO_AQUI"
+DB_PASSWORD="SUA_SENHA_DO_BANCO_AQUI"
+DB_NAME="SEU_NOME_DO_BANCO_AQUI"
+
+cat <<EOF > ${PROJECT_DIR}/docker-compose.yml
+version: '3.8'
+services:
+  wordpress:
+    image: wordpress:php8.3-apache
+    container_name: wordpress
+    restart: always
+    ports:
+      - "80:80"
+    environment:
+      WORDPRESS_DB_HOST: ${DB_HOST}
+      WORDPRESS_DB_USER: ${DB_USER}
+      WORDPRESS_DB_PASSWORD: ${DB_PASSWORD}
+      WORDPRESS_DB_NAME: ${DB_NAME}
+    volumes:
+      - ${WORDPRESS_FILES_PATH}:/var/www/html/
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: ${DB_HOST}
+      PMA_PORT: 3306
+EOF
+
+sudo chown -R 33:33 ${WORDPRESS_FILES_PATH}
+cd ${PROJECT_DIR}
+docker compose up -d
+```
 
 <img width="1920" height="926" alt="image" src="https://github.com/user-attachments/assets/145fdeff-7e8e-43f3-be30-c9a954bb6962" />
 
@@ -183,14 +374,18 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 <img width="1918" height="972" alt="image" src="https://github.com/user-attachments/assets/2336de80-2c3b-41c2-be89-bb2255aef243" />
 
-> Troque as variáveis com as suas credenciais do seu RDS (senha, user, host e banco), região da AWS e id da EFS
+> *Importante*: Substitua fs-your-efs-id pelo ID real do seu EFS e configure as credenciais do RDS.
 
-> Está em configuração avançadas o textarea para colocar o userdata
+> Está em configuração avançadas o textarea para o userdata.
 
 ---
 
 ## Application Load Balancer
-### Para fazer o direcionamento de rotas para as instâncias, vamos configurar o ALB. Nessa etapa também criamos o Targets Groups (Grupos de destino)
+
+### Criação do ALB
+
+1. Acesse *EC2* → *Load Balancers* → *Create Load Balancer*
+2. Selecione *Application Load Balancer*
 
 <img width="1917" height="974" alt="image" src="https://github.com/user-attachments/assets/858168b4-31ad-4574-b13d-76acd2b55ff4" />
 
@@ -206,8 +401,19 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 >  Vá em criar grupo de destino
 
-## Grupos de destino
-### Crie o grupo de destino para o Wordpress
+### Grupos de Destino (Target Groups)
+
+*Target Group 1 - WordPress (Porta 80):*
+- *Name*: wordpress-tg
+- *Protocol*: HTTP
+- *Port*: 80
+- *Health check path*: /
+
+*Target Group 2 - phpMyAdmin (Porta 8080):*
+- *Name*: phpmyadmin-tg  
+- *Protocol*: HTTP
+- *Port*: 8080
+- *Health check path*: /
 
 <img width="1919" height="696" alt="image" src="https://github.com/user-attachments/assets/18a0fb79-2a93-418e-8337-42caca2c664a" />
 
@@ -226,6 +432,14 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 ## ALB + Target Group
 
+### Configuração de Listeners
+
+*Listener 1 (Porta 80):*
+- *Default action*: Forward to wordpress-tg
+
+*Listener 2 (Porta 8080):*
+- *Default action*: Forward to phpmyadmin-tg
+
 <img width="1427" height="697" alt="image" src="https://github.com/user-attachments/assets/07286063-3353-4e7b-a602-3cb970008fd8" />
 
 > Errei nos Target Group, porém, coloque o 80 no Wordpress e o 8080 no phpMyAdmin
@@ -241,9 +455,22 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 ---
 
-## Configuração do Auto Scaling
-### Para ter o escalonamento automático da nossa Launch Template pré configurada, vamos usar o Auto Scaling
+## Auto Scaling
 
+### Criação do Auto Scaling Group
+
+1. Acesse *EC2* → *Auto Scaling Groups* → *Create Auto Scaling group*
+
+*Configurações:*
+- *Name*: autoScalingWordpress
+- *Launch template*: TemplateWordpress
+- *VPC*: Wordpress VPC
+- *Subnets*: Subnets app (us-east-1a e us-east-1b)
+
+  *Configuração de Escalabilidade:*
+- *Desired capacity*: 2
+- *Minimum capacity*: 2  
+- *Maximum capacity*: 4
 
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/cda016c0-47c9-4a0b-bd99-41b36d5b5d49" />
 
@@ -257,33 +484,31 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 <img width="1915" height="709" alt="image" src="https://github.com/user-attachments/assets/0c0a6950-f96d-424d-b816-6a701efea4dc" />
 
-
-
 <img width="1919" height="694" alt="image" src="https://github.com/user-attachments/assets/beeee04f-4a35-4525-a111-283d9f1301ac" />
 
 <img width="1918" height="892" alt="image" src="https://github.com/user-attachments/assets/10e01e50-fce4-4fb1-9a50-cea67511d9b7" />
 
 ---
 
-## Conclusão
+## Configuração Final
 
-### Pegue o DNS do seu Load Balance que você já vai conseguir acessar, colocando o porta 8080 você consegue acessar o phpMyAdmin
+### URLs de Acesso
 
-#### Para o Wordpress
+*WordPress:*
+http://SEU-DNS-ALB:80
 
-```bash
-http://SEUDNSALB.COM:80
-```
+*phpMyAdmin:*
+http://SEU-DNS-ALB:8080
 
-#### Para o phpMyAdmin
+### Configurações Importantes
 
-```bash
-http://SEUDNSALB.COM:8080
-```
+1. *Acesso ao phpMyAdmin*: Se mudar seu IP, atualize o security group do ALB
+2. *URL do WordPress*: Ao mudar o DNS do ALB, atualize a site_url no banco de dados com o phpMyAdmin
+3. *Health Checks*: Verifique se as instâncias estão passando nos health checks
 
-> Caso mude seu IP, você não irá conseguir acessar o phpMyAdmin. Basta arruma no SG do ALB
+### Demonstração
 
-> Lembre-se, se mudar a URL do ALB você precisará mudar no banco de dados o site_url (Nova DNS do ALB). Senão não irá carregar as estilizações do CSS e outras configurações do Wordpress.
+A aplicação final deve ficar semelhante a:
 
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/68450d1f-b932-4b92-b816-5554616c90c2" />
 
