@@ -251,6 +251,8 @@ Agora faça o mesmo processo conforme as imagens da subnet privada da região `u
 
 <img width="1920" height="931" alt="image" src="https://github.com/user-attachments/assets/85d5cb9f-000b-45e7-bb00-d8bb2f64704c" />
 
+> Coloque as subnets app
+
 <img width="1920" height="899" alt="image" src="https://github.com/user-attachments/assets/6f6e5334-88d6-423f-95e8-083bae0b6dc2" />
 
 <img width="1915" height="709" alt="image" src="https://github.com/user-attachments/assets/0c0a6950-f96d-424d-b816-6a701efea4dc" />
